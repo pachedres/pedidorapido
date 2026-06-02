@@ -37,7 +37,7 @@ pedidorapido/
 │   └── Dockerfile        ← imagem do serviço web
 ├── nginx/
 │   └── nginx.conf        ← configuração do load balancer
-├── docker-stack.yml      ← deploy declarativo (alternativa)
+├── docker-stack.yml      ← deploy
 └── README.md
 ```
 
