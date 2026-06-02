@@ -1,0 +1,32 @@
+version: "3.8"
+
+networks:
+  pedido-net:
+    driver: overlay
+
+services:
+
+  redis:
+    image: redis:7-alpine
+    networks:
+      - pedido-net
+
+  web:
+    image: pedidorapido-web
+    networks:
+      - pedido-net
+    deploy:
+      replicas: 1
+    depends_on:
+      - redis
+
+  nginx:
+    image: nginx:alpine
+    networks:
+      - pedido-net
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - web
